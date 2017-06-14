@@ -1,6 +1,8 @@
 # This Bro script appends JA3 to ssl.log
 # Version 1.2 (March 2017)
 #
+# Authors: John B. Althouse (jalthouse@salesforce.com) & Jeff Atkinson (jatkinson@salesforce.com)
+#
 # Copyright (c) 2017, salesforce.com, inc.
 # All rights reserved.
 # Licensed under the BSD 3-Clause license. 
