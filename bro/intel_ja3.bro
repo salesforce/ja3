@@ -1,5 +1,7 @@
 # This Bro script adds JA3 to the Bro Intel Framework as Intel::JA3
 #
+# Author: John B. Althouse (jalthouse@salesforce.com)
+#
 # Copyright (c) 2017, salesforce.com, inc.
 # All rights reserved.
 # Licensed under the BSD 3-Clause license. 
