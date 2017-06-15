@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 
 #####
@@ -7,7 +6,8 @@
 # Copyright (c) 2017, salesforce.com, inc.
 # All rights reserved.
 # Licensed under the BSD 3-Clause license. 
-# For full license text, see LICENSE.txt file in the repo root  or https://opensource.org/licenses/BSD-3-Clause
+# For full license text, see LICENSE.txt file in the repo root
+# or https://opensource.org/licenses/BSD-3-Clause
 #####
 
 from collections import defaultdict
@@ -20,7 +20,6 @@ import traceback
 import dpkt
 import binascii
 
-# DEBUG = True
 DEBUG = False
 TLS_HANDSHAKE = 22
 
@@ -78,6 +77,7 @@ def print_ja3_hashes(cap):
             continue
 
         tcp = ip.data
+        # this will cause a miss for non port 443 ssl traffic
         if tcp.dport != 443 and tcp.sport != 443:
             continue
 
