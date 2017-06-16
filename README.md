@@ -25,13 +25,11 @@ These strings are then MD5 hashed to produce an easily consumable and sharable 3
     769,4-5-10-9-100-98-3-6-19-18-99,,, --> de350869b8c85de67a350c8d186f11e6
 
 We have support for Bro and Python. Suricata and others are in the works!
-___
+___  
 ### JA3 Created by
 
-Jeff Atkinson (jatkinson@salesforce.com)
-
-Josh Atkins (joshua.atkins@salesforce.com)
-
+Jeff Atkinson (jatkinson@salesforce.com)  
+Josh Atkins (joshua.atkins@salesforce.com)  
 John B. Althouse (jalthouse@salesforce.com)
 
-Please send questions and comments to John Althouse.
+Please send questions and comments to **John B. Althouse**.
