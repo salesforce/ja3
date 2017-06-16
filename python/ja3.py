@@ -86,7 +86,7 @@ def print_ja3_hashes(cap, any_port=False):
 
         tcp = ip.data
 
-        if (tcp.dport != 443 and tcp.sport != 443) or any_port:
+        if not (tcp.dport == 443 or tcp.sport == 443 or any_port):
             continue
 
         if len(tcp.data) <= 0:
