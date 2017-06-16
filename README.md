@@ -3,13 +3,27 @@
 
 JA3 is a new technique for creating SSL client fingerprints that are easy to produce and can be easily shared for threat intelligence.
 
+### Examples
+
+JA3 fingerprint for the standard Tor client:  
+```
+e7d705a3286e19ea42f587b344ee6865
+```
+JA3 fingerprint for the Dyre malware family:
+```
+55fa82b61806d2e6e9848260de2ecb34
+```
+While destination IPs, Ports, and X509 certificates change, the JA3 fingerprint remains constant for the client application in these examples.
+
+### How it works
+
 JA3 takes the decimal values of the bytes for certain fields (version, ciphers, extensions, etc.) in the SSL Client Hello packet and concatenates them together, in a particular order, using a "," to delimit each field and a "-" to delimit each value in each field. 
 
 The field order is as follows:
 ```
 SSLVersion,Cipher,SSLExtension,EllipticCurve,EllipticCurvePointFormat
 ```
-An example:
+Example:
     
     769,47-53-5-10-49161-49162-49171-49172-50-56-19-4,0-10-11,23-24-25,0
 
@@ -28,8 +42,8 @@ We have support for Bro and Python. Suricata and others are in the works!
 ___  
 ### JA3 Created by
 
-Jeff Atkinson (jatkinson@salesforce.com)  
-Josh Atkins (joshua.atkins@salesforce.com)  
-John B. Althouse (jalthouse@salesforce.com)
+[Jeff Atkinson](jatkinson@salesforce.com)  
+[Josh Atkins](joshua.atkins@salesforce.com)  
+[John B. Althouse](jalthouse@salesforce.com)
 
-Please send questions and comments to **John B. Althouse**.
+Please send questions and comments to **[John B. Althouse](jalthouse@salesforce.com)**.
