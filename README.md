@@ -3,7 +3,7 @@
 
 JA3 is a new technique for creating SSL client fingerprints that are easy to produce and can be easily shared for threat intelligence.
 
-### Examples
+## Examples
 
 JA3 fingerprint for the standard Tor client:  
 ```
@@ -15,7 +15,7 @@ JA3 fingerprint for the Dyre malware family:
 ```
 While destination IPs, Ports, and X509 certificates change, the JA3 fingerprint remains constant for the client application in these examples.
 
-### How it works
+## How it works
 
 JA3 takes the decimal values of the bytes for certain fields (version, ciphers, extensions, etc.) in the SSL Client Hello packet and concatenates them together, in a particular order, using a "," to delimit each field and a "-" to delimit each value in each field. 
 
