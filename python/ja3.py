@@ -19,6 +19,8 @@ import struct
 import traceback
 import dpkt
 import binascii
+import socket
+import argparse
 
 DEBUG = False
 TLS_HANDSHAKE = 22
@@ -58,7 +60,13 @@ def convert_to_ja3_seg(data):
     return "-".join([str(x) for x in int_vals])
 
 
-def print_ja3_hashes(cap):
+def print_ja3_hashes(cap, any_port=False):
+
+    def convert_ip(val):
+        try:
+            return socket.inet_ntop(socket.AF_INET, val)
+        except ValueError:
+            return socket.inet_ntop(socket.AF_INET6, val)
 
     for ts, buf in cap:
 
@@ -77,8 +85,8 @@ def print_ja3_hashes(cap):
             continue
 
         tcp = ip.data
-        # this will cause a miss for non port 443 ssl traffic
-        if tcp.dport != 443 and tcp.sport != 443:
+
+        if (tcp.dport != 443 and tcp.sport != 443) or any_port:
             continue
 
         if len(tcp.data) <= 0:
@@ -154,26 +162,44 @@ def print_ja3_hashes(cap):
 
             ja3 = ",".join(ja3)
             ja_digest = md5(ja3).hexdigest()
-            print "JA3: %s --> %s" % (ja3, ja_digest)
+            print "[%s:%s] JA3: %s --> %s" % (
+                convert_ip(ip.dst), 
+                tcp.dport, 
+                ja3, 
+                ja_digest
+            )
 
 
-def main(argv):
+def main(args):
 
-    if len(argv) != 2:
-        print "Tool to generate JA3 fingerprints observed in a pcap."
-        print ""
-        print "Usage: %s <pcap file>" % argv[0]
-        print ""
-        sys.exit(1)
-
-    with open(argv[1], 'rb') as fp:
+    with open(args.pcap, 'rb') as fp:
         capture = get_pcap_reader(fp)
-        print_ja3_hashes(capture)
+        print_ja3_hashes(capture, any_port=args.any_port)
 
 
 if __name__ == "__main__":
 
+    parser = argparse.ArgumentParser(
+        description=(
+            "A python script for extracting JA3 fingerprints from pcap files"
+        )
+    )
+
+    parser.add_argument(
+        "-a",
+        "--any_port",
+        required=False,
+        action="store_true",
+        default=False,
+        help="Look for client hellos on any port instead of just 443"
+    )
+    parser.add_argument(
+        "pcap",
+        help="The pcap file to process"
+    )
+
+    args = parser.parse_args()
     try:
-        main(sys.argv)
+        main(args)
     except Exception, e:
         traceback.print_exc()
