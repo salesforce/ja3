@@ -8,8 +8,8 @@ intel_ja3.bro should be loaded after ja3.bro.
 ___  
 ### JA3 Created by
 
-Jeff Atkinson (jatkinson@salesforce.com)  
-Josh Atkins (joshua.atkins@salesforce.com)  
-John B. Althouse (jalthouse@salesforce.com)
+[Jeff Atkinson](jatkinson@salesforce.com)  
+[Josh Atkins](joshua.atkins@salesforce.com)  
+[John B. Althouse](jalthouse@salesforce.com)
 
-Please send questions and comments to **John B. Althouse**.
+Please send questions and comments to **[John B. Althouse](jalthouse@salesforce.com)**.
