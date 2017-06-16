@@ -28,8 +28,10 @@ We have support for Bro and Python. Suricata and others are in the works!
 ___
 ### JA3 Created by
 
-Jeff Atkinson
+Jeff Atkinson (jatkinson@salesforce.com)
 
-Josh Atkins
+Josh Atkins (joshua.atkins@salesforce.com)
 
-John B. Althouse
+John B. Althouse (jalthouse@salesforce.com)
+
+Please send questions and comments to John Althouse.
