@@ -21,8 +21,8 @@ $ ./ja3.py example.pcap
 ___  
 ### JA3 Created by
 
-[Jeff Atkinson](jatkinson@salesforce.com)  
-[Josh Atkins](joshua.atkins@salesforce.com)  
-[John B. Althouse](jalthouse@salesforce.com)
+[Jeff Atkinson](mailto:jatkinson@salesforce.com)  
+[Josh Atkins](mailto:joshua.atkins@salesforce.com)  
+[John B. Althouse](mailto:jalthouse@salesforce.com)
 
-Please send questions and comments to **[John B. Althouse](jalthouse@salesforce.com)**.
+Please send questions and comments to **[John B. Althouse](mailto:jalthouse@salesforce.com)**.
