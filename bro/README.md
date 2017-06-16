@@ -8,7 +8,7 @@
 - Tested on Bro 2.4.1 and Bro 2.5
 
 ## Installation
-- Download files to bro/share/bro/sites/ja3
+- Download files to bro/share/bro/site/ja3
 
 - Add this line to your local.bro script
 ```
