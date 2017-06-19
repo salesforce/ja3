@@ -17,7 +17,8 @@ export {
     redef enum Intel::Where += { SSL::IN_JA3 };
 }
 
-event ssl_server_hello (c: connection, version: count, possible_ts: time, server_random: string, session_id: string, cipher: count, comp_method: count)
+event ssl_client_hello(c: connection, version: count, possible_ts: time, client_random: string, session_id: string, ciphers: index_vec)
 	{
+	if ( c$ssl?$ja3 )
 	Intel::seen([$indicator=c$ssl$ja3, $indicator_type=Intel::JA3, $conn=c, $where=SSL::IN_JA3]);
 	}
