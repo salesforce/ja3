@@ -5,16 +5,13 @@
 #
 # Copyright (c) 2017, salesforce.com, inc.
 # All rights reserved.
-# Licensed under the BSD 3-Clause license. 
+# Licensed under the BSD 3-Clause license.
 # For full license text, see LICENSE.txt file in the repo root
 # or https://opensource.org/licenses/BSD-3-Clause
 #####
 
-from collections import defaultdict
 from hashlib import md5
 
-import os
-import sys
 import struct
 import traceback
 import dpkt
@@ -50,11 +47,13 @@ def convert_to_ja3_seg(data):
 
     int_vals = []
 
-    if len(data) < 2:
-        return str(ord(data[0]))
+    data = bytearray(data)
 
-    for i in xrange(0, len(data), 2):
-        val = (ord(data[i]) << 8) | ord(data[i + 1])
+    if len(data) < 2:
+        return str(data[0])
+
+    for i in list(range(0, len(data), 2)):
+        val = (data[i] << 8) | data[i + 1]
         int_vals.append(val)
 
     return "-".join([str(x) for x in int_vals])
@@ -75,7 +74,7 @@ def print_ja3_hashes(cap, any_port=False):
         except:
             continue
 
-        # print 'pkt: %d' % (pkt_count)
+        # print('pkt: %d' % (pkt_count))
 
         if not isinstance(eth.data, dpkt.ip.IP):
             continue
@@ -93,15 +92,16 @@ def print_ja3_hashes(cap, any_port=False):
             continue
 
         # we only care about handshakes for now...
-        if ord(tcp.data[0]) != TLS_HANDSHAKE:
+        tls_handshake = bytearray(tcp.data)
+        if tls_handshake[0] != TLS_HANDSHAKE:
             continue
 
         records = []
         try:
             records, bytes_used = dpkt.ssl.tls_multi_factory(tcp.data)
-        except dpkt.ssl.SSL3Exception, e:
+        except dpkt.ssl.SSL3Exception:
             continue
-        except dpkt.dpkt.NeedData, e:
+        except dpkt.dpkt.NeedData:
             continue
 
         if len(records) <= 0:
@@ -117,15 +117,16 @@ def print_ja3_hashes(cap, any_port=False):
                 continue
 
             # Client Hello only
-            if ord(record.data[0]) != 1:
+            client_hello = bytearray(record.data)
+            if client_hello[0] != 1:
                 continue
 
             if DEBUG:
-                print "Hello DATA: %s" % binascii.hexlify(record.data)
+                print("Hello DATA: %s" % binascii.hexlify(record.data))
 
             try:
                 handshake = dpkt.ssl.TLSHandshake(record.data)
-            except dpkt.dpkt.NeedData, e:
+            except dpkt.dpkt.NeedData:
                 continue
 
             if not isinstance(handshake.data, dpkt.ssl.TLSClientHello):
@@ -134,7 +135,7 @@ def print_ja3_hashes(cap, any_port=False):
             ch = handshake.data
 
             if DEBUG:
-                print "Handshake DATA: %s" % binascii.hexlify(ch.data)
+                print("Handshake DATA: %s" % binascii.hexlify(ch.data))
 
             buf, ptr = parse_variable_array(ch.data, 1)
             buf, ptr = parse_variable_array(ch.data[ptr:], 2)
@@ -161,13 +162,13 @@ def print_ja3_hashes(cap, any_port=False):
                 ja3.extend(["", "", ""])
 
             ja3 = ",".join(ja3)
-            ja_digest = md5(ja3).hexdigest()
-            print "[%s:%s] JA3: %s --> %s" % (
-                convert_ip(ip.dst), 
-                tcp.dport, 
-                ja3, 
+            ja_digest = md5(ja3.encode()).hexdigest()
+            print("[%s:%s] JA3: %s --> %s" % (
+                convert_ip(ip.dst),
+                tcp.dport,
+                ja3,
                 ja_digest
-            )
+            ))
 
 
 def main(args):
@@ -201,5 +202,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     try:
         main(args)
-    except Exception, e:
+    except Exception:
         traceback.print_exc()
