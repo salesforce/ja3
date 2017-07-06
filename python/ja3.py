@@ -22,6 +22,27 @@ import argparse
 DEBUG = False
 TLS_HANDSHAKE = 22
 
+# Well...this is neat
+# https://tools.ietf.org/html/draft-davidben-tls-grease-00
+GREASE_table = {
+    0x0a0a : True,
+    0x1a1a : True,
+    0x2a2a : True,
+    0x3a3a : True,
+    0x4a4a : True,
+    0x5a5a : True,
+    0x6a6a : True,
+    0x7a7a : True,
+    0x8a8a : True,
+    0x9a9a : True,
+    0xaaaa : True,
+    0xbaba : True,
+    0xcaca : True,
+    0xdada : True,
+    0xeaea : True,
+    0xfafa : True
+}
+
 
 def get_pcap_reader(fp):
     return dpkt.pcap.Reader(fp)
@@ -50,10 +71,18 @@ def convert_to_ja3_seg(data):
     data = bytearray(data)
 
     if len(data) < 2:
+
+        if GREASE_table.get(data[0], False):
+            return ""
+
         return str(data[0])
 
     for i in list(range(0, len(data), 2)):
         val = (data[i] << 8) | data[i + 1]
+
+        if GREASE_table.get(val, False):
+            continue
+
         int_vals.append(val)
 
     return "-".join([str(x) for x in int_vals])
@@ -141,12 +170,18 @@ def print_ja3_hashes(cap, any_port=False):
             buf, ptr = parse_variable_array(ch.data[ptr:], 2)
             ja3 = ["%d" % ch.version]
             ja3.append(convert_to_ja3_seg(buf))
+
             if hasattr(ch, "extensions"):
+            
                 exts = []
                 ec = ""
                 ec_pf = ""
+                
                 for ext_val, ext_data in ch.extensions:
-                    exts.append(ext_val)
+                
+                    if not GREASE_table.get(ext_val):
+                        exts.append(ext_val)
+                    
                     if ext_val == 0x0a:
                         a, b = parse_variable_array(ext_data, 2)
                         ec = convert_to_ja3_seg(a)
