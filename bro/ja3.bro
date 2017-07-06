@@ -1,5 +1,5 @@
 # This Bro script appends JA3 to ssl.log
-# Version 1.2 (March 2017)
+# Version 1.3 (June 2017)
 #
 # Authors: John B. Althouse (jalthouse@salesforce.com) & Jeff Atkinson (jatkinson@salesforce.com)
 #
@@ -36,9 +36,28 @@ redef record SSL::Info += {
 #  ja3_ec_fmt:     string &optional &log;
 };
 
+# Google. https://tools.ietf.org/html/draft-davidben-tls-grease-01
+const grease: set[int] = {
+    2570,
+    6682,
+    10794,
+    14906,
+    19018,
+    23130,
+    27242,
+    31354,
+    35466,
+    39578,
+    43690,
+    47802,
+    51914,
+    56026,
+    60138,
+    64250
+};
 const sep = "-";
 event bro_init() {
-  Log::create_stream(JA3::LOG,[$columns=TLSFPStorage, $path="tlsfp"]);
+    Log::create_stream(JA3::LOG,[$columns=TLSFPStorage, $path="tlsfp"]);
 }
 
 event ssl_extension(c: connection, is_orig: bool, code: count, val: string)
@@ -46,6 +65,9 @@ event ssl_extension(c: connection, is_orig: bool, code: count, val: string)
 if ( ! c?$tlsfp )
     c$tlsfp=TLSFPStorage();
     if ( is_orig = T ) {
+        if ( code in grease ) {
+            next;
+        }
         if ( c$tlsfp$extensions == "" ) {
             c$tlsfp$extensions = cat(code);
         }
@@ -61,10 +83,13 @@ if ( !c?$tlsfp )
     c$tlsfp=TLSFPStorage();
     if ( is_orig = T ) {
         for ( i in point_formats ) {
-        if ( c$tlsfp$ec_point_fmt == "" ) {
+            if ( point_formats[i] in grease ) {
+            next;
+            }
+            if ( c$tlsfp$ec_point_fmt == "" ) {
             c$tlsfp$ec_point_fmt += cat(point_formats[i]);
             }
-      else {
+            else {
             c$tlsfp$ec_point_fmt += string_cat(sep,cat(point_formats[i]));
             }
         }
@@ -77,12 +102,15 @@ event ssl_extension_elliptic_curves(c: connection, is_orig: bool, curves: index_
     c$tlsfp=TLSFPStorage();
     if ( is_orig = T  ) {
         for ( i in curves ) {
+            if ( curves[i] in grease ) {
+            next;
+            }
             if ( c$tlsfp$e_curves == "" ) {
                 c$tlsfp$e_curves += cat(curves[i]);
-          }
+            }
             else {
                 c$tlsfp$e_curves += string_cat(sep,cat(curves[i]));
-          }
+            }
         }
     }
 }
@@ -93,12 +121,15 @@ event ssl_client_hello(c: connection, version: count, possible_ts: time, client_
     c$tlsfp=TLSFPStorage();
     c$tlsfp$client_version = version;
     for ( i in ciphers ) {
+        if ( ciphers[i] in grease ) {
+            next;
+        }
         if ( c$tlsfp$client_ciphers == "" ) { 
             c$tlsfp$client_ciphers += cat(ciphers[i]);
         }
         else {
             c$tlsfp$client_ciphers += string_cat(sep,cat(ciphers[i]));
-      }
+        }
     }
     local sep2 = ",";
     local ja3_string = string_cat(cat(c$tlsfp$client_version),sep2,c$tlsfp$client_ciphers,sep2,c$tlsfp$extensions,sep2,c$tlsfp$e_curves,sep2,c$tlsfp$ec_point_fmt);
