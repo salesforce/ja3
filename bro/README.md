@@ -37,8 +37,9 @@ By defualt ja3.bro will only append ja3 to the ssl.log. However, if you would li
 ___  
 ### JA3 Created by
 
+[John B. Althouse](mailto:jalthouse@salesforce.com)  
 [Jeff Atkinson](mailto:jatkinson@salesforce.com)  
-[Josh Atkins](mailto:joshua.atkins@salesforce.com)  
-[John B. Althouse](mailto:jalthouse@salesforce.com)
+[Josh Atkins](mailto:j.atkins@salesforce.com)  
 
 Please send questions and comments to **[John B. Althouse](mailto:jalthouse@salesforce.com)**.
+
