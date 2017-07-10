@@ -42,8 +42,9 @@ We have support for Bro and Python. Suricata and others are in the works!
 ___  
 ### JA3 Created by
 
+[John B. Althouse](mailto:jalthouse@salesforce.com)  
 [Jeff Atkinson](mailto:jatkinson@salesforce.com)  
-[Josh Atkins](mailto:joshua.atkins@salesforce.com)  
-[John B. Althouse](mailto:jalthouse@salesforce.com)
+[Josh Atkins](mailto:j.atkins@salesforce.com)  
 
 Please send questions and comments to **[John B. Althouse](mailto:jalthouse@salesforce.com)**.
+
