@@ -14,7 +14,7 @@ e7d705a3286e19ea42f587b344ee6865
 ```
 JA3 fingerprint for the Dyre malware family:
 ```
-55fa82b61806d2e6e9848260de2ecb34
+b386946a5a44d1ddcc843bc75336dfce
 ```
 JA3 fingerprint for Metasploit's Meterpreter (Linux):
 ```
