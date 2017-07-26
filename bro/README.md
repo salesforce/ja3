@@ -17,7 +17,7 @@
 
 ## Configuration
 
-By defualt ja3.bro will only append ja3 to the ssl.log. However, if you would like to log all aspects of the SSL Client Hello Packet, uncomment the following lines in ja3.bro
+By default ja3.bro will only append ja3 to the ssl.log. However, if you would like to log all aspects of the SSL Client Hello Packet, uncomment the following lines in ja3.bro
 ```bash
 #  ja3_version:  string &optional &log;
 #  ja3_ciphers:  string &optional &log;
