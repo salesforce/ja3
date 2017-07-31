@@ -172,16 +172,16 @@ def print_ja3_hashes(cap, any_port=False):
             ja3.append(convert_to_ja3_seg(buf))
 
             if hasattr(ch, "extensions"):
-            
+
                 exts = []
                 ec = ""
                 ec_pf = ""
-                
+
                 for ext_val, ext_data in ch.extensions:
-                
+
                     if not GREASE_table.get(ext_val):
                         exts.append(ext_val)
-                    
+
                     if ext_val == 0x0a:
                         a, b = parse_variable_array(ext_data, 2)
                         ec = convert_to_ja3_seg(a)
