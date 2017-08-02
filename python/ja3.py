@@ -64,28 +64,39 @@ def parse_variable_array(buf, lenbytes):
     return data, size + lenbytes
 
 
-def convert_to_ja3_seg(data):
+def _ntoh(b):
+  if len(b) == 1:
+    return b[0]
+  elif len(b) == 2:
+    return struct.unpack('!H', b)[0]
+  elif len(b) == 4:
+    return struct.unpack('!I', b)[0]
+  else:
+    raise ValueError('Invalid input buffer size for ntoh')
 
+
+def convert_to_ja3_seg(data, element_width):
+    """Converts a packed array of elements to a JA3 segment.
+
+    Args:
+      data: string containing the packed elements
+      element_width: integer width (in bytes) of each element
+    Raises:
+      ValueError if len(data) is not a multiple of element_width.
+    """
     int_vals = []
-
     data = bytearray(data)
 
-    if len(data) < 2:
+    if len(data) % element_width:
+      raise ValueError('Element list %d is not a multiple of %d'
+                       % (len(data), element_width))
 
-        if GREASE_table.get(data[0], False):
-            return ""
+    for i in range(0, len(data), element_width):
+      element = _ntoh(data[i:i+element_width])
+      if not element in GREASE_table:
+        int_vals.append(element)
 
-        return str(data[0])
-
-    for i in list(range(0, len(data), 2)):
-        val = (data[i] << 8) | data[i + 1]
-
-        if GREASE_table.get(val, False):
-            continue
-
-        int_vals.append(val)
-
-    return "-".join([str(x) for x in int_vals])
+    return "-".join(str(x) for x in int_vals)
 
 
 def print_ja3_hashes(cap, any_port=False):
@@ -169,25 +180,29 @@ def print_ja3_hashes(cap, any_port=False):
             buf, ptr = parse_variable_array(ch.data, 1)
             buf, ptr = parse_variable_array(ch.data[ptr:], 2)
             ja3 = ["%d" % ch.version]
-            ja3.append(convert_to_ja3_seg(buf))
+
+            # Cipher Suites (16 bit values)
+            ja3.append(convert_to_ja3_seg(buf, 2))
 
             if hasattr(ch, "extensions"):
-            
+
                 exts = []
                 ec = ""
                 ec_pf = ""
-                
+
                 for ext_val, ext_data in ch.extensions:
-                
+
                     if not GREASE_table.get(ext_val):
                         exts.append(ext_val)
-                    
+
                     if ext_val == 0x0a:
                         a, b = parse_variable_array(ext_data, 2)
-                        ec = convert_to_ja3_seg(a)
+                        # Elliptic curve points (16 bit values)
+                        ec = convert_to_ja3_seg(a, 2)
                     elif ext_val == 0x0b:
                         a, b = parse_variable_array(ext_data, 1)
-                        ec_pf = convert_to_ja3_seg(a)
+                        # Elliptic curve point formats (8 bit values)
+                        ec_pf = convert_to_ja3_seg(a, 1)
 
                 ja3.append("-".join([str(x) for x in exts]))
                 ja3.append(ec)
