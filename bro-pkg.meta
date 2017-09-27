@@ -1,0 +1,6 @@
+[package]
+script_dir = bro
+description = JA3 is a new technique for creating SSL client fingerprints that are easy to produce and can be easily shared for threat intelligence.
+    https://github.com/salesforce/ja3
+tags = intel, ssl, logging
+version = 1.0.0
