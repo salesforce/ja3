@@ -18,6 +18,7 @@ import dpkt
 import binascii
 import socket
 import argparse
+import json
 
 DEBUG = False
 TLS_HANDSHAKE = 22
@@ -99,7 +100,7 @@ def convert_to_ja3_seg(data, element_width):
     return "-".join(str(x) for x in int_vals)
 
 
-def print_ja3_hashes(cap, any_port=False):
+def print_ja3_hashes(cap, any_port=False, print_json=False):
 
     def convert_ip(val):
         try:
@@ -213,19 +214,23 @@ def print_ja3_hashes(cap, any_port=False):
 
             ja3 = ",".join(ja3)
             ja_digest = md5(ja3.encode()).hexdigest()
-            print("[%s:%s] JA3: %s --> %s" % (
-                convert_ip(ip.dst),
-                tcp.dport,
-                ja3,
-                ja_digest
-            ))
+            if print_json:
+                record = {"src":convert_ip(ip.src), "dst":convert_ip(ip.dst), "spt":tcp.sport, "dpt":tcp.dport, "ja3":ja_digest}
+                print json.dumps(record)
+            else:
+                print("[%s:%s] JA3: %s --> %s" % (
+                    convert_ip(ip.dst),
+                    tcp.dport,
+                    ja3,
+                    ja_digest
+                ))
 
 
 def main(args):
 
     with open(args.pcap, 'rb') as fp:
         capture = get_pcap_reader(fp)
-        print_ja3_hashes(capture, any_port=args.any_port)
+        print_ja3_hashes(capture, any_port=args.any_port, print_json=args.print_json)
 
 
 if __name__ == "__main__":
@@ -243,6 +248,15 @@ if __name__ == "__main__":
         action="store_true",
         default=False,
         help="Look for client hellos on any port instead of just 443"
+    )
+    parser.add_argument(
+        "-j",
+        "--json",
+        required=False,
+        action="store_true",
+        default=False,
+        help="Print out as JSON records for downstream parsing",
+        dest="print_json"
     )
     parser.add_argument(
         "pcap",
