@@ -23,9 +23,9 @@ JA3 fingerprint for Metasploit's Meterpreter (Linux):
 
 While destination IPs, Ports, and X509 certificates change, the JA3 fingerprint remains constant for the client application in these examples.
 
-A list of over 400 JA3's and their associated applications can be found [here](https://github.com/trisulnsm/trisul-scripts/tree/master/lua/frontend_scripts/reassembly/ja3/prints) (Please note that the list is old and we would love assistance in creating a more current one)
+## Lists
 
-Work on a public JA3 Malware Blacklist is in progress.
+Lists of hundreds of known JA3's and their associated applications can be found [here](https://github.com/salesforce/ja3/tree/master/lists).
 
 ## How it works
 
