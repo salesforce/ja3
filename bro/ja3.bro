@@ -136,14 +136,14 @@ event ssl_client_hello(c: connection, version: count, possible_ts: time, client_
     local tlsfp_1 = md5_hash(ja3_string);
     c$ssl$ja3 = tlsfp_1;
 
-## LOG FIELD VALUES ##
+# LOG FIELD VALUES ##
 #c$ssl$ja3_version = cat(c$tlsfp$client_version);
 #c$ssl$ja3_ciphers = c$tlsfp$client_ciphers;
 #c$ssl$ja3_extensions = c$tlsfp$extensions;
 #c$ssl$ja3_ec = c$tlsfp$e_curves;
 #c$ssl$ja3_ec_fmt = c$tlsfp$ec_point_fmt;
 #
-## FOR DEBUGGING ##
+# FOR DEBUGGING ##
 #print "JA3: "+tlsfp_1+" Fingerprint String: "+ja3_string;
 
 }
