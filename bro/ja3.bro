@@ -28,7 +28,7 @@ redef record connection += {
 
 redef record SSL::Info += {
   ja3:            string &optional &log;
-## LOG FIELD VALUES ##
+# LOG FIELD VALUES ##
 #  ja3_version:  string &optional &log;
 #  ja3_ciphers:  string &optional &log;
 #  ja3_extensions: string &optional &log;
