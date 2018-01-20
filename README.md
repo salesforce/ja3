@@ -1,10 +1,15 @@
-# JA3 - A new way to profile SSL Clients
+# JA3 - A method for profiling SSL/TLS Clients
 
-JA3 is a new technique for creating SSL client fingerprints that are easy to produce and can be easily shared for threat intelligence.
+JA3 is a method for creating SSL/TLS client fingerprints that are easy to produce and can be easily shared for threat intelligence.
 
 This repo includes JA3 scripts for [Bro](https://www.bro.org/) and [Python](https://www.python.org/).
 
-JA3 support has also been added to [Moloch](http://molo.ch/) and [Trisul NSM](https://github.com/trisulnsm/trisul-scripts/tree/master/lua/frontend_scripts/reassembly/ja3). 
+JA3 support has also been added to:  
+[Moloch](http://molo.ch/)  
+[Trisul NSM](https://github.com/trisulnsm/trisul-scripts/tree/master/lua/frontend_scripts/reassembly/ja3)  
+[NGiNX](https://github.com/fooinha/nginx-ssl-ja3)  
+[MISP](https://github.com/MISP)  
+[Darktrace](https://www.darktrace.com/)  
 
 ## Examples
 
@@ -12,9 +17,9 @@ JA3 fingerprint for the standard Tor client:
 ```
 e7d705a3286e19ea42f587b344ee6865
 ```
-JA3 fingerprint for the Dyre malware family:
+JA3 fingerprint for the Dridex malware:
 ```
-b386946a5a44d1ddcc843bc75336dfce
+74927e242d6c3febf8cb9cab10a7f889
 ```
 JA3 fingerprint for Metasploit's Meterpreter (Linux):
 ```
