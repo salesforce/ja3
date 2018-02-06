@@ -22,7 +22,8 @@ Getting Started
 
 Example
 -------
-.. code-block:: json
+Output from sample PCAP::
+
     [
         {
             "destination_ip": "192.168.1.3",
