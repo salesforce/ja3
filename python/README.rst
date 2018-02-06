@@ -22,7 +22,7 @@ Getting Started
 
 Example
 -------
-```javascript
+```
 [
     {
         "destination_ip": "192.168.1.3",
