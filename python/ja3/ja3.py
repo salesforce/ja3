@@ -232,7 +232,7 @@ def main():
                         help=help_text)
     help_text = "Print out as JSON records for downstream parsing"
     parser.add_argument("-j", "--json", required=False, action="store_true",
-                        default=False, help=help_text)
+                        default=True, help=help_text)
     args = parser.parse_args()
 
     # Use an iterator to process each line of the file
