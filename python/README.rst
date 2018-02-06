@@ -22,7 +22,7 @@ Getting Started
 
 Example
 -------
-
+```json
 [
     {
         "destination_ip": "192.168.1.3",
@@ -43,6 +43,7 @@ Example
         "timestamp": 1350802597.517011
     }
 ]
+```
 
 Changelog
 ---------
