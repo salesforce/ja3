@@ -5,13 +5,16 @@
 - **intel_ja3.bro** will add INTEL::JA3 to the Bro Intel Framwork
   - This will allow you to import JA3 fingerprints directly into your intel feed.
 
-- Tested on Bro 2.4.1 and Bro 2.5
+- Tested on Bro 2.4.1, 2.5, and 2.5.1
 
 ## Installation
-- Download files to bro/share/bro/site/ja3
-
-- Add this line to your local.bro script
+- If you're running Bro >=2.5 or a Bro product like Corelight, you can install by using the Bro Package Manager and this one simple command:
+```bash
+bro-pkg install ja3
 ```
+
+- For everyone else, download the files to bro/share/bro/site/ja3 and add this line to your local.bro script:
+```bash
 @load ./ja3
 ```
 
