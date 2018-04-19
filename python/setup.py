@@ -16,7 +16,7 @@ setup(
     license="BSD",
     packages=find_packages(),
     install_requires=['dpkt'],
-    long_description=read('README.md'),
+    long_description=read('README.rst'),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: End Users/Desktop',
