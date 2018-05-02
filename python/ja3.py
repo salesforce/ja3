@@ -5,6 +5,7 @@ import argparse
 import dpkt
 import json
 import socket
+import binascii
 import struct
 from hashlib import md5
 
@@ -215,7 +216,8 @@ def process_pcap(pcap, any_port=False):
                       "destination_port": tcp.dport,
                       "ja3": ja3,
                       "ja3_digest": md5(ja3.encode()).hexdigest(),
-                      "timestamp": timestamp}
+                      "timestamp": timestamp,
+                      "client_hello_pkt": binascii.hexlify(tcp.data)}
             results.append(record)
 
     return results
@@ -233,6 +235,9 @@ def main():
     help_text = "Print out as JSON records for downstream parsing"
     parser.add_argument("-j", "--json", required=False, action="store_true",
                         default=False, help=help_text)
+    help_text = "Print packet related data for research (json only)"
+    parser.add_argument("-r", "--research", required=False, action="store_true",
+                        default=False, help=help_text)
     args = parser.parse_args()
 
     # Use an iterator to process each line of the file
@@ -245,6 +250,10 @@ def main():
         output = process_pcap(capture, any_port=args.any_port)
 
     if args.json:
+        if not args.research:
+            def remove_items(x):
+                del x['client_hello_pkt']
+            map(remove_items,output)
         output = json.dumps(output, indent=4, sort_keys=True)
         print(output)
     else:
