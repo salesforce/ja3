@@ -1,9 +1,12 @@
 ## Features
-- **ja3.bro** will add the field "ja3" to the end of ssl.log.  
+- **ja3.bro** will add the field "ja3" to ssl.log.  
   - It can also append fields used by JA3 to ssl.log
 
 - **intel_ja3.bro** will add INTEL::JA3 to the Bro Intel Framwork
   - This will allow you to import JA3 fingerprints directly into your intel feed.
+  
+- **ja3s.bro** will add the field "ja3s" to ssl.log, JA3 for the server hello.
+  - It can also append fields used by JA3S to ssl.log.
 
 - Tested on Bro 2.4.1, 2.5, and 2.5.1
 
@@ -36,6 +39,7 @@ By default ja3.bro will only append ja3 to the ssl.log. However, if you would li
 #c$ssl$ja3_ec = c$tlsfp$e_curves;
 #c$ssl$ja3_ec_fmt = c$tlsfp$ec_point_fmt;
 ```
+The same changes can be made in ja3s.bro as well.
 
 ___  
 ### JA3 Created by
