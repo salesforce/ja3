@@ -4,3 +4,4 @@ description = JA3 creates 32 character SSL client fingerprints and logs them as 
     https://github.com/salesforce/ja3
 tags = intel, ssl, logging
 version = 1.0.0
+test_command = cd testing && make test

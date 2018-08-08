@@ -1,2 +1,2 @@
 test:
-	@btest
+	@btest -c btest.cfg
