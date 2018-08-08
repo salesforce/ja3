@@ -1,0 +1,10 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	ssl
+#open	2018-08-07-15-13-07
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	cipher	curve	server_name	resumed	last_alert	next_protocol	established	cert_chain_fuids	client_cert_chain_fuids	subject	issuer	client_subject	client_issuer	ja3
+#types	time	string	addr	port	addr	port	string	string	string	string	bool	string	string	bool	vector[string]	vector[string]	string	string	string	string	string
+1533675122.268646	CsxcEJ27YYj5NZyGHf	192.168.1.121	54169	172.217.6.78	443	TLSv12	TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256	secp256r1	google.com	F	-	h2	T	F3LziA2XgiZjU3GzRj,FTM6u21mObbtU4Avd3	(empty)	CN=*.google.com,O=Google LLC,L=Mountain View,ST=California,C=US	CN=Google Internet Authority G3,O=Google Trust Services,C=US	-	-	2a26b1a62e40d25d4de3babc9d532f30
+#close	2018-08-07-15-13-07
