@@ -108,7 +108,7 @@ def process_extensions(server_handshake):
     """
     if not hasattr(server_handshake, "extensions"):
         # Needed to preserve commas on the join
-        return ["", "", ""]
+        return [""]
 
     exts = list()
     #elliptic_curve = ""
