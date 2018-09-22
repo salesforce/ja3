@@ -217,7 +217,7 @@ def process_pcap(pcap, any_port=False):
                       "ja3": ja3,
                       "ja3_digest": md5(ja3.encode()).hexdigest(),
                       "timestamp": timestamp,
-                      "client_hello_pkt": binascii.hexlify(tcp.data)}
+                      "client_hello_pkt": binascii.hexlify(tcp.data).decode('utf-8')}
             results.append(record)
 
     return results
@@ -253,7 +253,7 @@ def main():
         if not args.research:
             def remove_items(x):
                 del x['client_hello_pkt']
-            map(remove_items,output)
+            list(map(remove_items,output))
         output = json.dumps(output, indent=4, sort_keys=True)
         print(output)
     else:
