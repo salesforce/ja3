@@ -2,12 +2,13 @@
 """Generate JA3 fingerprints from PCAPs using Python."""
 
 import argparse
-import dpkt
 import json
 import socket
 import binascii
 import struct
 from hashlib import md5
+
+import dpkt
 
 __author__ = "Tommy Stallings"
 __copyright__ = "Copyright (c) 2017, salesforce.com, inc."
@@ -253,7 +254,7 @@ def main():
         if not args.research:
             def remove_items(x):
                 del x['client_hello_pkt']
-            map(remove_items,output)
+            map(remove_items, output)
         output = json.dumps(output, indent=4, sort_keys=True)
         print(output)
     else:
@@ -267,4 +268,4 @@ def main():
 
 
 if __name__ == "__main__":
-        main()
+    main()

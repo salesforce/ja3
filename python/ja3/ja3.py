@@ -2,11 +2,12 @@
 """Generate JA3 fingerprints from PCAPs using Python."""
 
 import argparse
-import dpkt
 import json
 import socket
 import struct
 from hashlib import md5
+
+import dpkt
 
 __author__ = "Tommy Stallings"
 __copyright__ = "Copyright (c) 2017, salesforce.com, inc."
@@ -258,4 +259,4 @@ def main():
 
 
 if __name__ == "__main__":
-        main()
+    main()
