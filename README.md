@@ -17,8 +17,8 @@ JA3 support has also been added to:
 [ICEBRG](http://icebrg.io/)  
 [Redsocks](https://www.redsocks.eu/)  
 [NetWitness](https://github.com/timetology/nw/tree/master/parsers/ssl_ja3)  
-[ExtraHop](https://www.extrahop.com/)
-[Vectra Cognito Platform](https://vectra.ai/)
+[ExtraHop](https://www.extrahop.com/)  
+[Vectra Cognito Platform](https://vectra.ai/)  
 and more...  
 
 
