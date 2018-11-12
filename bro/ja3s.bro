@@ -56,7 +56,11 @@ if ( ! c?$ja3sfp )
     }
 }
 
+@if ( Version::at_least("2.6") || ( Version::number == 20500 && Version::info$commit >= 944 ) )
+event ssl_server_hello(c: connection, version: count, record_version: count, possible_ts: time, server_random: string, session_id: string, cipher: count, comp_method: count) &priority=1
+@else
 event ssl_server_hello(c: connection, version: count, possible_ts: time, server_random: string, session_id: string, cipher: count, comp_method: count) &priority=1
+@endif
 {
     if ( !c?$ja3sfp )
     c$ja3sfp=JA3Sstorage();
