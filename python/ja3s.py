@@ -232,7 +232,7 @@ def main():
         print(output)
     else:
         for record in output:
-            tmp = '[{dest}:{port}] JA3: {segment} --> {digest}'
+            tmp = '[{dest}:{port}] JA3S: {segment} --> {digest}'
             tmp = tmp.format(dest=record['destination_ip'],
                              port=record['destination_port'],
                              segment=record['ja3'],
