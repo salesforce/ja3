@@ -111,29 +111,11 @@ def process_extensions(server_handshake):
         return [""]
 
     exts = list()
-    #elliptic_curve = ""
-    #elliptic_curve_point_format = ""
     for ext_val, ext_data in server_handshake.extensions:
-        #if not GREASE_TABLE.get(ext_val):
-        #    exts.append(ext_val)
-        #exts.append(ext_val)
-        if ext_val == 0x0a:
-            continue
-        #    a, b = parse_variable_array(ext_data, 2)
-            # Elliptic curve points (16 bit values)
-        #    elliptic_curve = convert_to_ja3_segment(a, 2)
-        elif ext_val == 0x0b:
-        #    a, b = parse_variable_array(ext_data, 1)
-            # Elliptic curve point formats (8 bit values)
-        #    elliptic_curve_point_format = convert_to_ja3_segment(a, 1)
-        #else:
-            continue
         exts.append(ext_val)
 
     results = list()
     results.append("-".join([str(x) for x in exts]))
-    #results.append(elliptic_curve)
-    #results.append(elliptic_curve_point_format)
     return results
 
 
