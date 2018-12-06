@@ -10,7 +10,8 @@
 # For full license text, see LICENSE.txt file in the repo root  or https://opensource.org/licenses/BSD-3-Clause
 #
 
-
+@load base/misc/version
+@load base/protocols/ssl
 
 module JA3_Server;
 
