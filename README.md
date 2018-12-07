@@ -20,6 +20,7 @@ JA3 support has also been added to:
 [ExtraHop](https://www.extrahop.com/)  
 [Vectra Cognito Platform](https://vectra.ai/)  
 [Corvil](https://www.corvil.com/blog/2018/environmentally-conscious-understanding-your-network)  
+[Java](https://github.com/lafaspot/ja3_4java)  
 and more...  
 
 
