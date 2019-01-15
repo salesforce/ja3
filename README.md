@@ -21,6 +21,7 @@ JA3 support has also been added to:
 [Vectra Cognito Platform](https://vectra.ai/)  
 [Corvil](https://www.corvil.com/blog/2018/environmentally-conscious-understanding-your-network)  
 [Java](https://github.com/lafaspot/ja3_4java)  
+[Go](https://github.com/open-ch/ja3)  
 and more...  
 
 
