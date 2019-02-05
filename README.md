@@ -2,7 +2,9 @@
 
 JA3 is a method for creating SSL/TLS client fingerprints that should be easy to produce on any platform and can be easily shared for threat intelligence.
 
-This repo includes JA3 scripts for [Bro/Zeek](https://www.bro.org/) and [Python](https://www.python.org/).
+Before using, please read this blog post: [TLS Fingerprinting with JA3 and JA3S](https://engineering.salesforce.com/tls-fingerprinting-with-ja3-and-ja3s-247362855967)
+
+This repo includes JA3 and JA3S scripts for [Bro/Zeek](https://www.bro.org/) and [Python](https://www.python.org/).
 
 JA3 support has also been added to:  
 [Moloch](http://molo.ch/)  
@@ -105,7 +107,7 @@ JA3 is a much more effective way to detect malicious activity over SSL than IP o
 
 JA3 is also an excellent detection mechanism in locked-down environments where only a few specific applications are allowed to be installed. In these types of environments one could build a whitelist of expected applications and then alert on any other JA3 hits.
 
-For more details on what you can see and do with JA3 and JA3S, please see this DerbyCon 2018 talk: https://www.youtube.com/watch?v=NI0Lmp0K1zc
+For more details on what you can see and do with JA3 and JA3S, please see this DerbyCon 2018 talk: https://www.youtube.com/watch?v=NI0Lmp0K1zc or this [blog post.](https://engineering.salesforce.com/tls-fingerprinting-with-ja3-and-ja3s-247362855967)
 
 Please contact me on twitter @4A4133 or over email, let me know what you find and if you have any feature requests. 
 
