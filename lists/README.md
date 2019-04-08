@@ -7,5 +7,7 @@ We're working on a Windows list and getting the automation working there. If you
 
 ## 3rd Party Lists
 
+[JA3er Crowd Sourced DB](https://ja3er.com) JA3er uses a crowd sourced method of building and maintaining an up-to-date database of JA3s and their associated applications.  
+
 [Lee Brotherson's DB](https://github.com/trisulnsm/trisul-scripts/tree/master/lua/frontend_scripts/reassembly/ja3/prints)  
 Trisul created a script to convert Lee Brotherston's database of 400+ fingerprints to JA3.
