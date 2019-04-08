@@ -48,7 +48,9 @@ While destination IPs, Ports, and X509 certificates change, the JA3 fingerprint 
 
 ## Lists
 
-Lists of hundreds of known JA3's and their associated applications can be found [here](https://github.com/salesforce/ja3/tree/master/lists). Please be aware that these lists are intended to be used as an example of what is possible and not as an intel feed.
+Example lists of known JA3's and their associated applications can be found [here](https://github.com/salesforce/ja3/tree/master/lists).  
+
+A more up-to-date crowd sourced method of gathering and reporting on JA3s can be found at [ja3er.com](https://ja3er.com).  
 
 ## How it works
 
