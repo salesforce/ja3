@@ -34,42 +34,6 @@ def convert_ip(value):
         return socket.inet_ntop(socket.AF_INET6, value)
 
 
-def parse_variable_array(buf, byte_len):
-    """Unpack data from buffer of specific length.
-
-    :param buf: Buffer to operate on
-    :type buf: bytes
-    :param byte_len: Length to process
-    :type byte_len: int
-    :returns: bytes, int
-    """
-    _SIZE_FORMATS = ['!B', '!H', '!I', '!I']
-    assert byte_len <= 4
-    size_format = _SIZE_FORMATS[byte_len - 1]
-    padding = b'\x00' if byte_len == 3 else b''
-    size = struct.unpack(size_format, padding + buf[:byte_len])[0]
-    data = buf[byte_len:byte_len + size]
-
-    return data, size + byte_len
-
-
-def ntoh(buf):
-    """Convert to network order.
-
-    :param buf: Bytes to convert
-    :type buf: bytearray
-    :returns: int
-    """
-    if len(buf) == 1:
-        return buf[0]
-    elif len(buf) == 2:
-        return struct.unpack('!H', buf)[0]
-    elif len(buf) == 4:
-        return struct.unpack('!I', buf)[0]
-    else:
-        raise ValueError('Invalid input buffer size for NTOH')
-
-
 def process_extensions(server_handshake):
     """Process any extra extensions and convert to a JA3 segment.
 
