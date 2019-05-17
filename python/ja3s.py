@@ -17,11 +17,6 @@ __maintainer__ = "Tommy Stallings, Brandon Dixon"
 __email__ = "tommy.stallings@salesforce.com"
 
 
-GREASE_TABLE = {0x0a0a: True, 0x1a1a: True, 0x2a2a: True, 0x3a3a: True,
-                0x4a4a: True, 0x5a5a: True, 0x6a6a: True, 0x7a7a: True,
-                0x8a8a: True, 0x9a9a: True, 0xaaaa: True, 0xbaba: True,
-                0xcaca: True, 0xdada: True, 0xeaea: True, 0xfafa: True}
-# GREASE_TABLE Ref: https://tools.ietf.org/html/draft-davidben-tls-grease-00
 SSL_PORT = 443
 TLS_HANDSHAKE = 22
 
@@ -73,30 +68,6 @@ def ntoh(buf):
         return struct.unpack('!I', buf)[0]
     else:
         raise ValueError('Invalid input buffer size for NTOH')
-
-
-def convert_to_ja3_segment(data, element_width):
-    """Convert a packed array of elements to a JA3 segment.
-
-    :param data: Current PCAP buffer item
-    :type: str
-    :param element_width: Byte count to process at a time
-    :type element_width: int
-    :returns: str
-    """
-    int_vals = list()
-    data = bytearray(data)
-    if len(data) % element_width:
-        message = '{count} is not a multiple of {width}'
-        message = message.format(count=len(data), width=element_width)
-        raise ValueError(message)
-
-    for i in range(0, len(data), element_width):
-        element = ntoh(data[i: i + element_width])
-        if element not in GREASE_TABLE:
-            int_vals.append(element)
-
-    return "-".join(str(x) for x in int_vals)
 
 
 def process_extensions(server_handshake):
