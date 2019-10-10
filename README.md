@@ -26,6 +26,7 @@ JA3 support has also been added to:
 [Go](https://github.com/open-ch/ja3)  
 [Security Onion](https://securityonion.net/)   
 [AIEngine](https://bitbucket.org/camp0/aiengine)  
+[RockNSM](https://rocknsm.io/)
 and more...  
 
 
