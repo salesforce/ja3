@@ -142,10 +142,15 @@ def process_pcap(pcap, any_port=False):
     :param any_port: Whether or not to search for non-SSL ports
     :type any_port: bool
     """
+    decoder = dpkt.ethernet.Ethernet
+    linktype = pcap.datalink()
+    if linktype == dpkt.pcap.DLT_LINUX_SLL:
+        decoder = dpkt.sll.SLL
+
     results = list()
     for timestamp, buf in pcap:
         try:
-            eth = dpkt.ethernet.Ethernet(buf)
+            eth = decoder(buf)
         except Exception:
             continue
 
