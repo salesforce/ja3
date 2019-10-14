@@ -6,6 +6,7 @@ import dpkt
 import json
 import socket
 import struct
+import os
 from hashlib import md5
 
 __author__ = "Tommy Stallings"
@@ -223,8 +224,14 @@ def main():
     with open(args.pcap, 'rb') as fp:
         try:
             capture = dpkt.pcap.Reader(fp)
-        except ValueError as e:
-            raise Exception("File doesn't appear to be a PCAP: %s" % e)
+        except ValueError as e_pcap:
+            try:
+                fp.seek(0, os.SEEK_SET)
+                capture = dpkt.pcapng.Reader(fp)
+            except ValueError as e_pcapng:
+                raise Exception(
+                        "File doesn't appear to be a PCAP or PCAPng: %s, %s" %
+                        (e_pcap, e_pcapng))
         output = process_pcap(capture, any_port=args.any_port)
 
     if args.json:
