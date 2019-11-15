@@ -1,29 +1,29 @@
 ## Features
-- **ja3.bro** will add the field "ja3" to ssl.log.  
+- **ja3.zeek** will add the field "ja3" to ssl.log.  
   - It can also append fields used by JA3 to ssl.log
 
-- **intel_ja3.bro** will add INTEL::JA3 to the Bro Intel Framwork
+- **intel_ja3.zeek** will add INTEL::JA3 to the Zeek Intel Framwork
   - This will allow you to import JA3 fingerprints directly into your intel feed.
   
-- **ja3s.bro** will add the field "ja3s" to ssl.log, JA3 for the server hello.
+- **ja3s.zeek** will add the field "ja3s" to ssl.log, JA3 for the server hello.
   - It can also append fields used by JA3S to ssl.log.
 
-- Tested on Bro 2.4.1, 2.5, and 2.5.1
+- Tested on Zeek 3.0.0
 
 ## Installation
-- If you're running Bro >=2.5 or a Bro product like Corelight, you can install by using the Bro Package Manager and this one simple command:
+- If you're running Zeek >= 3.0.0 or a Zeek product like Corelight, you can install by using the Zeek Package Manager and this one simple command:
 ```bash
-bro-pkg install ja3
+zkg install ja3
 ```
 
-- For everyone else, download the files to bro/share/bro/site/ja3 and add this line to your local.bro script:
+- For everyone else, download the files to zeek/share/zeek/site/ja3 and add this line to your local.zeek script:
 ```bash
 @load ./ja3
 ```
 
 ## Configuration
 
-By default ja3.bro will only append ja3 to the ssl.log. However, if you would like to log all aspects of the SSL Client Hello Packet, uncomment the following lines in ja3.bro
+By default ja3.zeek will only append ja3 to the ssl.log. However, if you would like to log all aspects of the SSL Client Hello Packet, uncomment the following lines in ja3.zeek
 ```bash
 #  ja3_version:  string &optional &log;
 #  ja3_ciphers:  string &optional &log;
@@ -39,7 +39,7 @@ By default ja3.bro will only append ja3 to the ssl.log. However, if you would li
 #c$ssl$ja3_ec = c$tlsfp$e_curves;
 #c$ssl$ja3_ec_fmt = c$tlsfp$ec_point_fmt;
 ```
-The same changes can be made in ja3s.bro as well.
+The same changes can be made in ja3s.zeek as well.
 
 ___  
 ### JA3 Created by

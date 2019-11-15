@@ -1,4 +1,4 @@
-# This Bro script adds JA3 to the Bro Intel Framework as Intel::JA3
+# This Zeek script adds JA3 to the Zeek Intel Framework as Intel::JA3
 #
 # Author: John B. Althouse (jalthouse@salesforce.com)
 #

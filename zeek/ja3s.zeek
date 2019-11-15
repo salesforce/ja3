@@ -1,4 +1,4 @@
-# This Bro script appends JA3S (JA3 Server) to ssl.log
+# This Zeek script appends JA3S (JA3 Server) to ssl.log
 # Version 1.0 (August 2018)
 # This builds a fingerprint for the SSL Server Hello packet based on SSL/TLS version, cipher picked, and extensions used. 
 # Designed to be used in conjunction with JA3 to fingerprint SSL communication between clients and servers.
@@ -38,7 +38,7 @@ redef record SSL::Info += {
 
 
 const sep = "-";
-event bro_init() {
+event zeek_init() {
     Log::create_stream(JA3_Server::LOG,[$columns=JA3Sstorage, $path="ja3sfp"]);
 }
 
