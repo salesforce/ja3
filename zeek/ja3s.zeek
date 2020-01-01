@@ -1,5 +1,5 @@
 # This Zeek script appends JA3S (JA3 Server) to ssl.log
-# Version 1.0 (August 2018)
+# Version 1.1 (January 2020)
 # This builds a fingerprint for the SSL Server Hello packet based on SSL/TLS version, cipher picked, and extensions used. 
 # Designed to be used in conjunction with JA3 to fingerprint SSL communication between clients and servers.
 #
