@@ -1,5 +1,5 @@
 # This Zeek script appends JA3 to ssl.log
-# Version 1.3 (June 2017)
+# Version 1.4 (January 2020)
 #
 # Authors: John B. Althouse (jalthouse@salesforce.com) & Jeff Atkinson (jatkinson@salesforce.com)
 #
