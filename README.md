@@ -28,6 +28,7 @@ JA3 support has also been added to:
 [AIEngine](https://bitbucket.org/camp0/aiengine)  
 [RockNSM](https://rocknsm.io/)  
 [Corelight](https://www.corelight.com/products/software)  
+[VirusTotal](https://blog.virustotal.com/2019/10/in-house-dynamic-analysis-virustotal-jujubox.html#ja3)  
 and more...  
 
 
