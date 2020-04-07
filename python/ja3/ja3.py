@@ -147,6 +147,8 @@ def process_pcap(pcap, any_port=False):
     linktype = pcap.datalink()
     if linktype == dpkt.pcap.DLT_LINUX_SLL:
         decoder = dpkt.sll.SLL
+    elif linktype == dpkt.pcap.DLT_NULL or linktype == dpkt.pcap.DLT_LOOP:
+        decoder = dpkt.loopback.Loopback
 
     results = list()
     for timestamp, buf in pcap:
