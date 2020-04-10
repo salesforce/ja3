@@ -142,7 +142,7 @@ def process_pcap(pcap, any_port=False):
         except Exception:
             continue
 
-        if not isinstance(eth.data, dpkt.ip.IP):
+        if not isinstance(eth.data, (dpkt.ip.IP, dpkt.ip6.IP6)):
             # We want an IP packet
             continue
         if not isinstance(eth.data.data, dpkt.tcp.TCP):
