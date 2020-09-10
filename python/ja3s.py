@@ -13,9 +13,9 @@ __author__ = "Tommy Stallings"
 __copyright__ = "Copyright (c) 2017, salesforce.com, inc."
 __credits__ = ["John B. Althouse", "Jeff Atkinson", "Josh Atkins"]
 __license__ = "BSD 3-Clause License"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __maintainer__ = "Tommy Stallings, Brandon Dixon"
-__email__ = "tommy.stallings@salesforce.com"
+__email__ = "tommy.stallings2@gmail.com"
 
 
 SSL_PORT = 443
