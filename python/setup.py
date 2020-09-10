@@ -8,11 +8,11 @@ def read(fname):
 
 setup(
     name='pyja3',
-    version='1.0.0',
+    version='1.1.0',
     description='Generate JA3 fingerprints from PCAPs using Python.',
     url="https://github.com/salesforce/ja3",
     author="Tommy Stallings",
-    author_email="tommy.stallings@salesforce.com",
+    author_email="tommy.stallings2@gmail.com",
     maintainer = "John B. Althouse",
     maintainer_email = "jalthouse@salesforce.com",
     license="BSD",
