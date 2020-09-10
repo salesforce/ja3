@@ -13,6 +13,8 @@ setup(
     url="https://github.com/salesforce/ja3",
     author="Tommy Stallings",
     author_email="tommy.stallings@salesforce.com",
+    maintainer = "John B. Althouse",
+    maintainer_email = "jalthouse@salesforce.com",
     license="BSD",
     packages=find_packages(),
     install_requires=['dpkt'],
