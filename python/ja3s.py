@@ -18,11 +18,6 @@ __maintainer__ = "Tommy Stallings, Brandon Dixon"
 __email__ = "tommy.stallings@salesforce.com"
 
 
-GREASE_TABLE = {0x0a0a: True, 0x1a1a: True, 0x2a2a: True, 0x3a3a: True,
-                0x4a4a: True, 0x5a5a: True, 0x6a6a: True, 0x7a7a: True,
-                0x8a8a: True, 0x9a9a: True, 0xaaaa: True, 0xbaba: True,
-                0xcaca: True, 0xdada: True, 0xeaea: True, 0xfafa: True}
-# GREASE_TABLE Ref: https://tools.ietf.org/html/draft-davidben-tls-grease-00
 SSL_PORT = 443
 TLS_HANDSHAKE = 22
 
@@ -38,66 +33,6 @@ def convert_ip(value):
         return socket.inet_ntop(socket.AF_INET, value)
     except ValueError:
         return socket.inet_ntop(socket.AF_INET6, value)
-
-
-def parse_variable_array(buf, byte_len):
-    """Unpack data from buffer of specific length.
-
-    :param buf: Buffer to operate on
-    :type buf: bytes
-    :param byte_len: Length to process
-    :type byte_len: int
-    :returns: bytes, int
-    """
-    _SIZE_FORMATS = ['!B', '!H', '!I', '!I']
-    assert byte_len <= 4
-    size_format = _SIZE_FORMATS[byte_len - 1]
-    padding = b'\x00' if byte_len == 3 else b''
-    size = struct.unpack(size_format, padding + buf[:byte_len])[0]
-    data = buf[byte_len:byte_len + size]
-
-    return data, size + byte_len
-
-
-def ntoh(buf):
-    """Convert to network order.
-
-    :param buf: Bytes to convert
-    :type buf: bytearray
-    :returns: int
-    """
-    if len(buf) == 1:
-        return buf[0]
-    elif len(buf) == 2:
-        return struct.unpack('!H', buf)[0]
-    elif len(buf) == 4:
-        return struct.unpack('!I', buf)[0]
-    else:
-        raise ValueError('Invalid input buffer size for NTOH')
-
-
-def convert_to_ja3_segment(data, element_width):
-    """Convert a packed array of elements to a JA3 segment.
-
-    :param data: Current PCAP buffer item
-    :type: str
-    :param element_width: Byte count to process at a time
-    :type element_width: int
-    :returns: str
-    """
-    int_vals = list()
-    data = bytearray(data)
-    if len(data) % element_width:
-        message = '{count} is not a multiple of {width}'
-        message = message.format(count=len(data), width=element_width)
-        raise ValueError(message)
-
-    for i in range(0, len(data), element_width):
-        element = ntoh(data[i: i + element_width])
-        if element not in GREASE_TABLE:
-            int_vals.append(element)
-
-    return "-".join(str(x) for x in int_vals)
 
 
 def process_extensions(server_handshake):
