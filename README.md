@@ -4,7 +4,7 @@ JA3 is a method for creating SSL/TLS client fingerprints that should be easy to 
 
 Before using, please read this blog post: [TLS Fingerprinting with JA3 and JA3S](https://engineering.salesforce.com/tls-fingerprinting-with-ja3-and-ja3s-247362855967)
 
-This repo includes JA3 and JA3S scripts for [Zeek](https://www.zeekurity.org/) and [Python](https://www.python.org/).
+This repo includes JA3 and JA3S scripts for [Zeek](https://www.zeekurity.org/) and [Python](https://www.python.org/). You can find a nice Rust implementation of the JA3 algorithm [here](https://github.com/jabedude/ja3-rs)
 
 JA3 support has also been added to:  
 [Moloch](http://molo.ch/)  
