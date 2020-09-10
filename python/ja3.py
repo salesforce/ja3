@@ -16,7 +16,7 @@ __credits__ = ["John B. Althouse", "Jeff Atkinson", "Josh Atkins"]
 __license__ = "BSD 3-Clause License"
 __version__ = "1.0.0"
 __maintainer__ = "Tommy Stallings, Brandon Dixon"
-__email__ = "tommy.stallings@salesforce.com"
+__email__ = "tommy.stallings2@gmail.com"
 
 
 GREASE_TABLE = {0x0a0a: True, 0x1a1a: True, 0x2a2a: True, 0x3a3a: True,
