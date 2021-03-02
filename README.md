@@ -9,7 +9,8 @@ This repo includes JA3 and JA3S scripts for [Zeek](https://www.zeekurity.org/) a
 JA3 support has also been added to:  
 [Moloch](http://molo.ch/)  
 [Trisul NSM](https://github.com/trisulnsm/trisul-scripts/tree/master/lua/frontend_scripts/reassembly/ja3)  
-[NGiNX](https://github.com/fooinha/nginx-ssl-ja3)  
+[NGiNX](https://github.com/fooinha/nginx-ssl-ja3)
+[BFE](https://github.com/bfenetworks/bfe)
 [MISP](https://github.com/MISP)  
 [Darktrace](https://www.darktrace.com/)  
 [Suricata](https://suricata-ids.org/tag/ja3/)  
