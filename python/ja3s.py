@@ -123,6 +123,10 @@ def process_pcap(pcap, any_port=False):
             except dpkt.dpkt.NeedData:
                 # Looking for a handshake here
                 continue
+            except dpkt.ssl.SSL3Exception:
+                #Unknown or invalid cypher suite type
+               continue
+
             if not isinstance(handshake.data, dpkt.ssl.TLSServerHello):
                 # Still not the HELLO
                 continue
