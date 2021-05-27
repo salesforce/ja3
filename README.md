@@ -122,9 +122,9 @@ Please contact me on twitter @4A4133 or over email, let me know what you find an
 ___  
 ### JA3 Created by
 
-[John B. Althouse](mailto:jalthouse@salesforce.com)  
-[Jeff Atkinson](mailto:jatkinson@salesforce.com)  
-[Josh Atkins](mailto:j.atkins@salesforce.com)  
+[John Althouse](https://www.linkedin.com/in/johnalthouse/)  
+[Jeff Atkinson](https://www.linkedin.com/in/annh/)  
+[Josh Atkins](https://www.linkedin.com/in/joshratkins/)  
 
-Please send questions and comments to **[John B. Althouse](mailto:jalthouse@salesforce.com)**.
+Please send questions and comments to **[John Althouse](https://twitter.com/4A4133)**.
 
