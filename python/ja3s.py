@@ -131,7 +131,7 @@ def process_pcap(pcap, any_port=False):
             ja3 = [str(server_handshake.version)]
 
             # Cipher Suites (16 bit values)
-            ja3.append(str(server_handshake.ciphersuite))
+            ja3.append(str(server_handshake.ciphersuite.code))
             ja3 += process_extensions(server_handshake)
             ja3 = ",".join(ja3)
 
