@@ -13,7 +13,7 @@ JA3 support has also been added to:
 [MISP](https://github.com/MISP)  
 [Darktrace](https://www.darktrace.com/)  
 [Suricata](https://suricata-ids.org/tag/ja3/)  
-[Elastic.co Packetbeat](https://www.elastic.co/guide/en/beats/packetbeat/master/exported-fields-tls.html)  
+[Elastic.co Packetbeat](https://www.elastic.co/guide/en/beats/packetbeat/current/exported-fields-tls_detailed.html)  
 [Splunk](https://www.splunk.com/blog/2017/12/18/configuring-ja3-with-bro-for-splunk.html)  
 [MantisNet](https://www.mantisnet.com/)  
 [ICEBRG](http://icebrg.io/)  
