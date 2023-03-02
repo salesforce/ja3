@@ -66,7 +66,7 @@ if ( ! c?$tlsfp )
     c$tlsfp=TLSFPStorage();
     if ( is_orig == T ) {
         if ( code in grease ) {
-            next;
+            return;
         }
         if ( c$tlsfp$extensions == "" ) {
             c$tlsfp$extensions = cat(code);
