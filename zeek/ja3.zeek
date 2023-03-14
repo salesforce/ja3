@@ -62,11 +62,12 @@ event zeek_init() {
 
 event ssl_extension(c: connection, is_orig: bool, code: count, val: string)
 {
-if ( ! c?$tlsfp )
-    c$tlsfp=TLSFPStorage();
     if ( is_orig == T ) {
         if ( code in grease ) {
-            next;
+            return;
+        }
+        if ( ! c?$tlsfp ){
+            c$tlsfp=TLSFPStorage();
         }
         if ( c$tlsfp$extensions == "" ) {
             c$tlsfp$extensions = cat(code);
@@ -77,11 +78,12 @@ if ( ! c?$tlsfp )
     }
 }
 
+
 event ssl_extension_ec_point_formats(c: connection, is_orig: bool, point_formats: index_vec)
 {
-if ( !c?$tlsfp )
-    c$tlsfp=TLSFPStorage();
     if ( is_orig == T ) {
+        if ( !c?$tlsfp )
+            c$tlsfp=TLSFPStorage();
         for ( i in point_formats ) {
             if ( point_formats[i] in grease ) {
             next;
