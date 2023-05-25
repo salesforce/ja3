@@ -31,6 +31,7 @@ JA3 support has also been added to:
 [VirusTotal](https://blog.virustotal.com/2019/10/in-house-dynamic-analysis-virustotal-jujubox.html#ja3)  
 [SELKS](https://www.stamus-networks.com/selks-6)  
 [Stamus Networks](https://www.stamus-networks.com/)  
+[IBM QRadar Network Insights (QNI)](https://community.ibm.com/community/user/security/blogs/tom-obremski1/2020/10/23/qni-ja3-ja3s-for-network-encryption)  
 and more...  
 
 
