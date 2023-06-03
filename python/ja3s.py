@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Generate JA3 fingerprints from PCAPs using Python."""
+"""Generate JA3S fingerprints from PCAPs using Python."""
 
 import argparse
 import dpkt
@@ -36,10 +36,10 @@ def convert_ip(value):
 
 
 def process_extensions(server_handshake):
-    """Process any extra extensions and convert to a JA3 segment.
+    """Process any extra extensions and convert to a JA3S segment.
 
-    :param client_handshake: Handshake data from the packet
-    :type client_handshake: dpkt.ssl.TLSClientHello
+    :param server_handshake: Handshake data from the packet
+    :type server_handshake: dpkt.ssl.TLSServerHello
     :returns: list
     """
     if not hasattr(server_handshake, "extensions"):
@@ -128,19 +128,19 @@ def process_pcap(pcap, any_port=False):
                 continue
 
             server_handshake = handshake.data
-            ja3 = [str(server_handshake.version)]
+            ja3s = [str(server_handshake.version)]
 
-            # Cipher Suites (16 bit values)
-            ja3.append(str(server_handshake.cipher_suite))
-            ja3 += process_extensions(server_handshake)
-            ja3 = ",".join(ja3)
+            # Chosen Cipher Suite (16 bit values)
+            ja3s.append(str(server_handshake.ciphersuite.code))
+            ja3s += process_extensions(server_handshake)
+            ja3s = ",".join(ja3s)
 
             record = {"source_ip": convert_ip(ip.src),
                       "destination_ip": convert_ip(ip.dst),
                       "source_port": tcp.sport,
                       "destination_port": tcp.dport,
-                      "ja3": ja3,
-                      "ja3_digest": md5(ja3.encode()).hexdigest(),
+                      "ja3s": ja3s,
+                      "ja3s_digest": md5(ja3s.encode()).hexdigest(),
                       "timestamp": timestamp}
             results.append(record)
 
@@ -148,11 +148,11 @@ def process_pcap(pcap, any_port=False):
 
 
 def main():
-    """Intake arguments from the user and print out JA3 output."""
-    desc = "A python script for extracting JA3 fingerprints from PCAP files"
+    """Intake arguments from the user and print out JA3s output."""
+    desc = "A python script for extracting JA3s fingerprints from PCAP files"
     parser = argparse.ArgumentParser(description=(desc))
     parser.add_argument("pcap", help="The pcap file to process")
-    help_text = "Look for client hellos on any port instead of just 443"
+    help_text = "Look for server hellos on any port instead of just 443"
     parser.add_argument("-a", "--any_port", required=False,
                         action="store_true", default=False,
                         help=help_text)
@@ -184,8 +184,8 @@ def main():
             tmp = '[{dest}:{port}] JA3S: {segment} --> {digest}'
             tmp = tmp.format(dest=record['destination_ip'],
                              port=record['destination_port'],
-                             segment=record['ja3'],
-                             digest=record['ja3_digest'])
+                             segment=record['ja3s'],
+                             digest=record['ja3s_digest'])
             print(tmp)
 
 
