@@ -8,6 +8,7 @@ import socket
 import struct
 import os
 from hashlib import md5
+from distutils.version import LooseVersion
 
 __author__ = "Tommy Stallings"
 __copyright__ = "Copyright (c) 2017, salesforce.com, inc."
@@ -131,7 +132,10 @@ def process_pcap(pcap, any_port=False):
             ja3 = [str(server_handshake.version)]
 
             # Cipher Suites (16 bit values)
-            ja3.append(str(server_handshake.cipher_suite))
+            if LooseVersion(dpkt.__version__) <= LooseVersion('1.9.1'):
+                ja3.append(str(server_handshake.cipher_suite))
+            else:
+                ja3.append(str(server_handshake.ciphersuite.code))
             ja3 += process_extensions(server_handshake)
             ja3 = ",".join(ja3)
 
