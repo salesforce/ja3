@@ -1,5 +1,7 @@
 # JA3 - A method for profiling SSL/TLS Clients
 
+JA3 was invented at Salesforce in 2017. However, the project is no longer being actively maintained by Salesforce. Its original creator, John Althouse, maintains the latest in TLS client fingerprinting technology at [FoxIO-LLC](https://github.com/FoxIO-LLC/ja4).
+
 JA3 is a method for creating SSL/TLS client fingerprints that should be easy to produce on any platform and can be easily shared for threat intelligence.
 
 Before using, please read this blog post: [TLS Fingerprinting with JA3 and JA3S](https://engineering.salesforce.com/tls-fingerprinting-with-ja3-and-ja3s-247362855967)
@@ -33,6 +35,12 @@ JA3 support has also been added to:
 [SELKS](https://www.stamus-networks.com/selks-6)  
 [Stamus Networks](https://www.stamus-networks.com/)  
 [IBM QRadar Network Insights (QNI)](https://community.ibm.com/community/user/security/blogs/tom-obremski1/2020/10/23/qni-ja3-ja3s-for-network-encryption)  
+[InQuest](https://inquest.net)  
+[Cloudflare](https://developers.cloudflare.com/bots/concepts/ja3-fingerprint/)  
+[AWS Network Firewall](https://docs.aws.amazon.com/network-firewall/latest/developerguide/aws-managed-rule-groups-threat-signature.html)  
+[Azure Firewall](https://learn.microsoft.com/en-us/azure/firewall/idps-signature-categories)  
+[AWS WAF](https://aws.amazon.com/about-aws/whats-new/2023/09/aws-waf-ja3-fingerprint-match/)  
+[Google Cloud](https://cloud.google.com/load-balancing/docs/https/custom-headers-global)  
 and more...  
 
 
