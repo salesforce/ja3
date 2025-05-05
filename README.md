@@ -41,6 +41,7 @@ JA3 support has also been added to:
 [Azure Firewall](https://learn.microsoft.com/en-us/azure/firewall/idps-signature-categories)  
 [AWS WAF](https://aws.amazon.com/about-aws/whats-new/2023/09/aws-waf-ja3-fingerprint-match/)  
 [Google Cloud](https://cloud.google.com/load-balancing/docs/https/custom-headers-global)  
+[Rama](https://ramaproxy.org)  
 and more...  
 
 
